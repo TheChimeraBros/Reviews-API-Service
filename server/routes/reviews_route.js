@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.router()
+const router = express.Router()
 
 router.get('/', (req, res) => {
   console.log('Got to 1st route');
@@ -13,3 +13,4 @@ router.get('/', (req, res) => {
       // '/review/report or helpful'
  */
 //
+module.exports = router;
