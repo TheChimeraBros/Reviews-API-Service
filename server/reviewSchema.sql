@@ -15,7 +15,7 @@ CREATE TABLE reviews(
  response TEXT,
  helpfulness INTEGER
 );
-CREATE TABLE characteristics(
+CREATE TABLE characteristics (
  id SERIAL PRIMARY KEY,
  product_id INTEGER,
 name character varying(250)
@@ -31,4 +31,4 @@ CREATE TABLE reviews_photos(
   id SERIAL PRIMARY KEY,
   review_Id BIGINT references reviews(id),
   url TEXT
-)
+);
