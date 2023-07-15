@@ -10,6 +10,7 @@ const config = {
   database: process.env.DB_NAME
 };
 
-const client = new Client(config);
+let client = new Client(config);
+client.connect();
 module.exports = client;
 
