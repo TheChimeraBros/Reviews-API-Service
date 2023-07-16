@@ -3,15 +3,16 @@ const db = require("../db.js");
 exports.getAllReviews = (queryParameters) => {
   /**
    * ! Figure out Sorting
+   * ! FIX FORMATTING OF DATE
    */
-    let {page, count, sort, product_id} = queryParameters;
-    console.log(queryParameters);
-    console.log(count);
-    page = page || 1;
-    count = count || 5;
-    sort =  sort || null;
-    const offset = ((page -1) * 5);
-    const queryStr = `SELECT
+  let { page, count, sort, product_id } = queryParameters;
+  console.log(queryParameters);
+  console.log(count);
+  page = page || 1;
+  count = count || 5;
+  sort = sort || null;
+  const offset = (page - 1) * 5;
+  const queryStr = `SELECT
     r.id AS review_id,
     r.rating,
     r.summary,
@@ -25,28 +26,56 @@ exports.getAllReviews = (queryParameters) => {
     WHERE r.product_id = ${product_id}
     GROUP BY r.id
     LIMIT ${count} OFFSET ${offset}
-    `
-    return db.query(queryStr);
+    `;
+  return db.query(queryStr);
 };
 
+exports.getMetaData = (queryParameters) => {
+  const {product_id} = queryParameters;
+  const queryStr = `
+    SELECT
+json_build_object(
 
+'product_id', ${product_id},
+'rating', (SELECT
+	json_object_agg(a.rating, a.count) AS rating
+FROM (SELECT
+    r.rating,
+    COUNT(*) AS count
+FROM
+    reviews AS r
+WHERE
+    r.product_id = ${product_id}
+GROUP BY
+    r.rating)
+    a),
+'recommended', (
+SELECT
+json_object_agg(CASE WHEN rc.recommend = 'true' THEN 1 ELSE 0 END, rc.count)
+FROM(SELECT
+r.product_id,
+r.recommend,
+COUNT(*)
+FROM reviews AS r
+WHERE r.product_id = ${product_id}
+GROUP BY r.product_id, r.recommend)rc),
+'characteristics', (
+	SELECT
+json_object_agg(c.name, json_build_object('id', c.id, 'value', c.value)) AS char
+FROM (SELECT
+	c.product_id,
+	c.name,
+	c.id,
+	AVG(cr.value) AS value
+	From characteristics AS c
+	LEFT OUTER JOIN characteristic_reviews AS cr ON c.id = cr.characteristic_id
+	WHERE c.product_id = ${product_id}
+	GROUP BY c.id, c.product_id, c.name) c)
 
+) AS metaData
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    `;
+};
 
 // create functions that query the database for the necessary rows
 // return the results of the query
