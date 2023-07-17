@@ -30,7 +30,8 @@ exports.getAllReviews = (queryParameters) => {
   return db.query(queryStr);
 };
 
-exports.getMetaData = (queryParameters) => {
+exports.findMetaData = (queryParameters) => {
+  console.log('Meta model')
   const {product_id} = queryParameters;
   const queryStr = `
     SELECT
@@ -72,19 +73,24 @@ FROM (SELECT
 	WHERE c.product_id = ${product_id}
 	GROUP BY c.id, c.product_id, c.name) c)
 
-) AS metaData
-
-    `;
+) AS metaData`;
+return db.query(queryStr);
 };
+exports.updateHelpfulness = (reviewId) => {
+  // given the id, I can look for the that id in the reviews table and update the helpfulness by 1
+    // use the update syntax to increment the helpfulness column by 1
 
-// create functions that query the database for the necessary rows
-// return the results of the query
-// I need a function that will return all reviews for a product with the given a parameters like
-// page, count, sort, product_id
-// another function that will get the review metadata
-// parameters are product id
+  const queryStr =`UPDATE reviews AS r
+  SET helpfulness = helpfulness + 1
+  WHERE r.id = ${reviewId}`;
+  return db.query(queryStr);
+}
+
 // function that will post to reviews
+
 // request or parameters
 // given the request body use the data to insert into the necessary tables.
+
+
 //another function that will do put request to reviews table to update helpful count
 // another function that will update a report column in table
