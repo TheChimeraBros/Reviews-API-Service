@@ -1,6 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { getReviews, getMetaData, putReviewHelpfulness } = require("../controllers/reviews");
+const {
+  getReviews,
+  getMetaData,
+  putReviewHelpfulness,
+  postReview,
+  putReviewReport,
+} = require("../controllers/reviews");
 
 router.get("/", (req, res) => {
   console.log("Got to 1st route");
@@ -8,17 +14,20 @@ router.get("/", (req, res) => {
 });
 
 router.get("/meta/", (req, res) => {
-  console.log('Got to Meta route');
+  console.log("Got to Meta route");
   getMetaData(req, res);
 });
 
-
 router.put("/:review_id/helpful", (req, res) => {
-  putReviewHelpfulness(req,res);
+  putReviewHelpfulness(req, res);
 });
 
-router.post("/", (req, res) => {});
-router.put("/:review_id/report", (req, res) => {});
+router.post("/", (req, res) => {
+  postReview(req, res);
+});
+router.put("/:review_id/report", (req, res) => {
+  putReviewReport(req,res);
+});
 /**
  * * one route /reviews which has query parameters
     // '/' main query to get all reviews with parameters
