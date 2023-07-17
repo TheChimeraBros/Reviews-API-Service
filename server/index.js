@@ -8,7 +8,8 @@ const app = express();
  * ! Include express.static if required
  */
 app.use(express.json());
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
+
 
 app.use('/reviews', reviews);
 
@@ -16,5 +17,5 @@ const PORT = process.env.SERVER_PORT || 3000;
 app.listen(PORT);
 console.log(`SERVER LISTENING AT http://localhost:${PORT}`);
 
-
+module.exports = app;
 
