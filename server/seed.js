@@ -81,7 +81,13 @@ client.connect()
     client.end();
   })
 
-
+/**
+ *  client.query(`
+  CREATE INDEX reviews_index
+  ON reviews (id, product_id)
+`)
+ *
+ */
 
 
 

@@ -31,7 +31,6 @@ exports.getAllReviews = (queryParameters) => {
 };
 
 exports.findMetaData = (queryParameters) => {
-  console.log("Meta model");
   const { product_id } = queryParameters;
   const queryStr = `
     SELECT
@@ -91,7 +90,7 @@ exports.updateReviewReport = async(reviewId) => {
 
 // function that will post to reviews
 exports.addReview = async (request) => {
-  console.log(request);
+  console.log('BODY',request);
   const {
     product_id,
     rating,
@@ -138,6 +137,7 @@ exports.addReview = async (request) => {
     }
     return;
   } catch (err) {
+    throw err;
     console.log(err);
   }
 };
