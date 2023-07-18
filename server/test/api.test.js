@@ -12,15 +12,15 @@ export let options = {
   noConnectionReuse: false,
   stages: [
     { duration: '10s', target: 10 }, //below normal load
-    { duration: '30s', target: 10 },
+    { duration: '1m', target: 10 },
     { duration: '10s', target: 100 }, // normal load
-    { duration: '30s', target: 100 },
+    { duration: '1m', target: 100 },
     { duration: '10s', target: 500 }, // around the breaking point
-    { duration: '30s', target: 500 },
-    { duration: '10s', target: 1000 }, // beyond the breaking point
-    { duration: '30s', target: 1000 },
+    { duration: '1m', target: 500 },
+    { duration: '1m', target: 1000 }, // beyond the breaking point
+    { duration: '1m', target: 1000 },
     { duration: '10s', target: 2000 },
-    { duration: '30s', target: 2000 },
+    { duration: '1m', target: 2000 },
     { duration: '1m', target: 100 },// scale down. recovery stage.
   ]
 };
