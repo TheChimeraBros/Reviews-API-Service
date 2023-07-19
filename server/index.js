@@ -15,7 +15,7 @@ app.use('/reviews', reviews);
 
 const PORT = process.env.SERVER_PORT || 3000;
 app.listen(PORT);
-console.log(`SERVER LISTENING AT http://${process.env.DB_HOST}:${PORT}`);
+console.log(`SERVER LISTENING AT http://localhost:${PORT}`);
 
 module.exports = app;
 
