@@ -14,8 +14,10 @@ app.use(morgan('dev'));
 app.use('/reviews', reviews);
 
 const PORT = process.env.SERVER_PORT || 3000;
+console.log(process.env.SERVER_PORT);
+console.log(PORT);
 app.listen(PORT);
-console.log(`SERVER LISTENING AT http://localhost:${PORT}`);
+console.log(`SERVER LISTENING AT http://${process.env.DB_HOST}:${PORT}`);
 
 module.exports = app;
 
