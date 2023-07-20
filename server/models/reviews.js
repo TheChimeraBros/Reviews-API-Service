@@ -88,7 +88,6 @@ exports.updateReviewReport = async(reviewId) => {
 
 // function that will post to reviews
 exports.addReview = async (request) => {
-  console.log('BODY',request);
   const {
     product_id,
     rating,
@@ -101,7 +100,6 @@ exports.addReview = async (request) => {
     characteristics,
   } = request;
   const date = new Date().getTime();
-  console.log('PHOTOS', photos, characteristics,email);
   try {
     const reviewStr = `
   INSERT INTO reviews AS r
@@ -136,7 +134,6 @@ exports.addReview = async (request) => {
     return;
   } catch (err) {
     throw err;
-    console.log(err);
   }
 };
 
