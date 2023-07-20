@@ -9,6 +9,7 @@ const {
 exports.getReviews = (req, res) => {
   getAllReviews(req.query)
     .then((result) => {
+      console.log(result.rows.slice(0,1));
       res.status(200).send(result.rows);
     })
     .catch((err) => {
