@@ -9,12 +9,10 @@ const {
 } = require("../controllers/reviews");
 
 router.get("/", (req, res) => {
-  console.log("Got to 1st route");
   getReviews(req, res);
 });
 
 router.get("/meta/", (req, res) => {
-  console.log("Got to Meta route");
   getMetaData(req, res);
 });
 

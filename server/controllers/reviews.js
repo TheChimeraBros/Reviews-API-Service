@@ -9,7 +9,6 @@ const {
 exports.getReviews = (req, res) => {
   getAllReviews(req.query)
     .then((result) => {
-      console.log(result.rows.slice(0,1));
       res.status(200).send(result.rows);
     })
     .catch((err) => {
@@ -29,19 +28,15 @@ exports.getMetaData = (req, res) => {
 };
 exports.postReview = async (req, res) => {
   try {
-    console.log("CONTROLLER REQ", req.body);
     await addReview(req.body);
-    console.log("Added review");
     res.status(201).send({message:'Data went through'});
   } catch (err) {
-    console.log(err);
-    res.sendStatus(400);
+    res.status(400).send(err);
   }
 };
 exports.putReviewHelpfulness = (req, res) => {
   updateHelpfulness(req.params.review_id)
     .then((result) => {
-      console.log("DONE");
       res.status(204).send("NO CONTENT");
     })
     .catch((err) => {
@@ -53,6 +48,6 @@ exports.putReviewReport = async (req, res) => {
     await updateReviewReport(req.params.review_id);
     res.status(204).send("NO CONTENT");
   } catch (err) {
-    console.log(err);
+    res.status(400).send(err);
   }
 };
