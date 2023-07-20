@@ -1,5 +1,5 @@
 require('dotenv').config();
-const compression = require('compression')
+
 const express = require('express');
 const morgan = require('morgan');
 const reviews = require('./routes/reviews_route.js')
@@ -10,7 +10,7 @@ const app = express();
  */
 
 app.use(express.json());
-app.use(compression());
+
 app.use(morgan('dev'));
 
 
