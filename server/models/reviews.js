@@ -6,8 +6,6 @@ exports.getAllReviews = (queryParameters) => {
    * ! FIX FORMATTING OF DATE
    */
   let { page, count, sort, product_id } = queryParameters;
-  console.log(queryParameters);
-  console.log(count);
   page = page || 1;
   count = count || 5;
   sort = sort || null;
