@@ -25,11 +25,10 @@ exports.getAllReviews = (queryParameters) => {
     GROUP BY r.id
     LIMIT $2 OFFSET $3
     `;
-  return db.query(queryStr, [product_id, count, offset ]);
+  return db.query(queryStr, [product_id, count, offset]);
 };
 
 exports.findMetaData = (queryParameters) => {
-  console.log('got to findMeta');
   const { product_id } = queryParameters;
   const queryStr = `SELECT
   rating_data.product_id,
@@ -80,12 +79,12 @@ exports.updateHelpfulness = (reviewId) => {
   WHERE r.id = $1`;
   return db.query(queryStr, [reviewId]);
 };
-exports.updateReviewReport = async(reviewId) => {
+exports.updateReviewReport = async (reviewId) => {
   const queryStr = `UPDATE reviews AS r
   SET reported = true
   WHERE r.id = $1`;
   return await db.query(queryStr, [reviewId]);
-}
+};
 
 // function that will post to reviews
 exports.addReview = async (request) => {
@@ -107,7 +106,7 @@ exports.addReview = async (request) => {
   (product_id, rating, date, summary, body, recommend, reviewer_name, reviewer_email)
   VALUES($1, $2, $3, $4, $5, $6, $7, $8)
   RETURNING id`;
-    const {rows} = await db.query(reviewStr, [
+    const { rows } = await db.query(reviewStr, [
       product_id,
       rating,
       date,
