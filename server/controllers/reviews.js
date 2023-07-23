@@ -19,8 +19,7 @@ exports.getReviews = (req, res) => {
 exports.getMetaData = (req, res) => {
   findMetaData(req.query)
     .then((results) => {
-      const { metadata } = results.rows[0];
-      res.status(200).send([metadata]);
+      res.status(200).send(results.rows[0]);
     })
     .catch((err) => {
       res.status(400).send(err);
