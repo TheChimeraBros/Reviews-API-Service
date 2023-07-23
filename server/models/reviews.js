@@ -25,52 +25,52 @@ exports.getAllReviews = (queryParameters) => {
     GROUP BY r.id
     LIMIT $2 OFFSET $3
     `;
-  return db.query(queryStr, [product_id, count, offset ]);
+  return db.query(queryStr, [product_id, count, offset]);
 };
 
 exports.findMetaData = (queryParameters) => {
   const { product_id } = queryParameters;
-  const queryStr = `
-    SELECT
-json_build_object(
-
-'product_id', ${product_id},
-'rating', (SELECT
-	json_object_agg(a.rating, a.count) AS rating
-FROM (SELECT
-    r.rating,
-    COUNT(*) AS count
-FROM
-    reviews AS r
-WHERE
-    r.product_id = ${product_id}
-GROUP BY
-    r.rating)
-    a),
-'recommended', (
-SELECT
-json_object_agg(CASE WHEN rc.recommend = 'true' THEN 1 ELSE 0 END, rc.count)
-FROM(SELECT
-r.product_id,
-r.recommend,
-COUNT(*)
-FROM reviews AS r
-WHERE r.product_id = ${product_id}
-GROUP BY r.product_id, r.recommend)rc),
-'characteristics', (
-	SELECT
-json_object_agg(c.name, json_build_object('id', c.id, 'value', c.value)) AS char
-FROM (SELECT
-	c.product_id,
-	c.name,
-	c.id,
-	AVG(cr.value) AS value
-	From characteristics AS c
-	LEFT OUTER JOIN characteristic_reviews AS cr ON c.id = cr.characteristic_id
-	WHERE c.product_id = ${product_id}
-	GROUP BY c.id, c.product_id, c.name) c)
-
-) AS metaData`;
+  const queryStr = `SELECT
+  rating_data.product_id,
+  rating_data.rating,
+  recommend_data.recommend,
+  characteristic_data.characterisitic
+  FROM
+  (SELECT
+  product_id,
+  json_object_agg(rating, count) AS rating
+  FROM(
+  SELECT
+  product_id,
+  rating,
+  COUNT(*) AS count
+  FROM reviews AS r
+  WHERE r.product_id = ${product_id}
+  GROUP BY rating, product_id
+  ORDER BY rating ASC) AS subquery
+  GROUP BY product_id
+  ) AS rating_data
+  CROSS JOIN
+  (SELECT
+  json_object_agg(CASE WHEN recommend =true THEN 1 ELSE 0 END,count) AS recommend
+  FROM
+  (SELECT
+  recommend,
+  COUNT(*) AS count
+  FROM reviews AS r
+  WHERE r.product_id = ${product_id}
+  GROUP BY recommend) AS b) AS recommend_data
+  CROSS JOIN
+  (SELECT
+  json_object_agg(name, json_build_object('id', id, 'value', value)) AS characterisitic
+  FROM (SELECT
+  name,
+  AVG(cr.value) AS value,
+  c.id AS id
+  FROM characteristics AS c
+  LEFT OUTER JOIN characteristic_reviews AS cr ON c.id = cr.characteristic_id
+  WHERE c.product_id = ${product_id}
+  GROUP BY name,c.id) AS subquery) AS characteristic_data;`;
   return db.query(queryStr);
 };
 exports.updateHelpfulness = (reviewId) => {
@@ -79,12 +79,12 @@ exports.updateHelpfulness = (reviewId) => {
   WHERE r.id = $1`;
   return db.query(queryStr, [reviewId]);
 };
-exports.updateReviewReport = async(reviewId) => {
+exports.updateReviewReport = async (reviewId) => {
   const queryStr = `UPDATE reviews AS r
   SET reported = true
   WHERE r.id = $1`;
   return await db.query(queryStr, [reviewId]);
-}
+};
 
 // function that will post to reviews
 exports.addReview = async (request) => {
@@ -106,7 +106,7 @@ exports.addReview = async (request) => {
   (product_id, rating, date, summary, body, recommend, reviewer_name, reviewer_email)
   VALUES($1, $2, $3, $4, $5, $6, $7, $8)
   RETURNING id`;
-    const {rows} = await db.query(reviewStr, [
+    const { rows } = await db.query(reviewStr, [
       product_id,
       rating,
       date,
