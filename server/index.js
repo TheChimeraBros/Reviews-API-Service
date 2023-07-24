@@ -13,8 +13,8 @@ app.use(morgan('dev'));
 
 
 app.use('/reviews', reviews);
-app.get('/loaderio-acbfa3eef07d1046dbb8bd39c148620a.txt', (req,res) => {
-  res.status(200).send('loaderio-acbfa3eef07d1046dbb8bd39c148620a');
+app.get('/loaderio-500062745ea5ecd914b851e9f1166b8d.txt', (req,res) => {
+  res.status(200).send('loaderio-500062745ea5ecd914b851e9f1166b8d');
 })
 const PORT = process.env.SERVER_PORT || 3000;
 console.log(process.env.SERVER_PORT);
