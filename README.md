@@ -49,8 +49,8 @@ Optimizations:
 <h3>GET/reviews/</h3>
 <p>Query Parameters</p>
 <p> Parameters should be query strings.</p>
-| Parameter | Type | Description|
-| --------- | ---- | -----------|
-| page| integer | Product for which to retrieve questions.
-| count| integer | Specifies how many results per page to return. Default 5
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| page      | integer | Product for which to retrieve questions. |
+| count     | integer | Specifies how many results per page to return. Default 5 |
 
