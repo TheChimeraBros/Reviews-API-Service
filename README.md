@@ -17,3 +17,10 @@ Optimizations:
     Installed an NGINX load balancer to distribute traffic across servers and utilize proxy_caching.
   </li>
 </ul>
+<h2>Stress Testing</h2>
+<h3>Randomized selection from bottom 10% of 13M+ entry dataset @1000RPS</h3>
+
+| Optimization  | Requests Per Sec | Avg. Response Time| Error % |
+| ------------- | ------------- | ------------|-------------------|
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
