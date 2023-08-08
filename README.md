@@ -22,6 +22,8 @@ Optimizations:
 
 | Optimization  | Requests Per Sec | Avg. Response Time| Error % |
 | ------------- | ------------- | ------------|-------|
-| (1) EC2 Express Server W/PostgreSQL on AWS | 1000| 4423 ms | 34.3
-| (2) EC2 Ecpress Server W/NGINX Load Balancer  | 1000  | Fail| Fail| 100.00
-| (3) 2 EC2 Express server W/NGNIX Load Balancer | 1000 | 362ms | 13.1 
+| EC2 Express Server W/PostgreSQL on AWS | 1000| 4423 ms | 34.3
+| EC2 Ecpress Server W/NGINX Load Balancer  | 1000  | Fail| Fail| 100.00
+| 2 EC2 Express Server W/NGNIX Load Balancer | 1000 | 362ms | 13.1 
+| 2 EC2 Express Server W/NGNIX Load Balancer W/ Proxy Cache| 1000 | 43ms | 0
+| 3 EC2 Express Server W/NGNIX Load Balancer W/ Proxy Cache| 2500 | 211ms | 4.2
