@@ -174,4 +174,4 @@ Optimizations:
 | --------- | ------- | ----------------------------------- |
 | review_id | integer | Required ID of the review to update |
 <p> Response </p>
-<h3>Response status: 204 NO CONTENT</h3>
+<h4>Response status: 204 NO CONTENT</h4>
