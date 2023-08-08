@@ -56,7 +56,7 @@ Optimizations:
 | sort | text | Changes the sort order of reviews to be based on "newest", "helpful", or "relevant"|
 | product_id | integer | Specifies the product for which to retrieve reviews.|
 
-<h3>Response status: 200 OK</h3>
+<h4>Response status: 200 OK</h4>
 <pre><code>
   {
   "product": "2",
@@ -107,7 +107,7 @@ Optimizations:
 | --------- | ------- | ----------------------------------- |
 | product_id | integer | Specifies the product for which to retrieve reviews.|
 
-<h3>Response status: 200 OK</h3>
+<h4>Response status: 200 OK</h4>
 <pre><code>
   {
   "product_id": "2",
@@ -152,7 +152,7 @@ Optimizations:
 | email |text |	Email address for question asker |
 | photos |[text] |	Array of text urls that link to images to be shown |
 | characteristics |	object |	Object of keys representing characteristic_id and values representing the review value for that characteristic. { "14": 5, "15": 5 //...} |
-<h3>Response status: 201 CREATED</h3>
+<h4>Response status: 201 CREATED</h4>
 
 <h3> Mark Review as Helpful</h3>
 <p> Updates a review to show it was found helfpul</p>
@@ -163,7 +163,7 @@ Optimizations:
 | --------- | ------- | ----------------------------------- |
 | review_id | integer | Required ID of the review to update |
 <p> Response </p>
-<h3>Response status: 204 NO CONTENT</h3>
+<h4>Response status: 204 NO CONTENT</h4>
 
 <h3> Report Review</h3>
 <p> Updates a review to show it was reported. Note, this action deos not delete the review, but the review will not be returned in the above GET request</p>
