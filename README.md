@@ -1,5 +1,4 @@
 # Reviews-API-Service
-<h1>Reviews API Service</h1>
 <p>
 The Reviews API has been refractored as a microservice from the existing monolithic API for the e-commerce website, Atelier. It responds to several RESTful endpoints and has been optimized to handle web-scale traffic.
 </p>
@@ -102,11 +101,13 @@ Optimizations:
 }
 </code></pre>
 <h3>GET/reviews/meta/</h3>
+<p>Parameters</p>
 
 | Parameter | Type    | Description                         |
 | --------- | ------- | ----------------------------------- |
 | product_id | integer | Specifies the product for which to retrieve reviews.|
 
+<h3>Response status: 200 OK</h3>
 <pre><code>
   {
   "product_id": "2",
@@ -136,3 +137,41 @@ Optimizations:
     // ...
 }
 </code></pre>
+<h3>Add a Review</h3>
+<p> Adds a review for the given product</p>
+<h3>POST /reviews</h3>
+
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| product_id | integer | Specifies the product for which to retrieve reviews.|
+|rating	int	| Integer (1-5) | indicating the review rating |
+| summary	| text |	Summary text of the review |
+| body |	text | Continued or full text of the review |
+|recommend |	bool |	Value indicating if the reviewer recommends the product |
+| name | text |	Username for question asker |
+| email |text |	Email address for question asker |
+| photos |[text] |	Array of text urls that link to images to be shown |
+| characteristics |	object |	Object of keys representing characteristic_id and values representing the review value for that characteristic. { "14": 5, "15": 5 //...} |
+<h3>Response status: 201 CREATED</h3>
+
+<h3> Mark Review as Helpful</h3>
+<p> Updates a review to show it was found helfpul</p>
+<h3>PUT/reviews/:review_id/helpful/</h3>
+<p>Parameters</p>
+
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| review_id | integer | Required ID of the review to update |
+<p> Response </p>
+<h3>Response status: 204 NO CONTENT</h3>
+
+<h3> Report Review</h3>
+<p> Updates a review to show it was reported. Note, this action deos not delete the review, but the review will not be returned in the above GET request</p>
+<h3>PUT/reviews/:review_id/reportl/</h3>
+<p>Parameters</p>
+
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| review_id | integer | Required ID of the review to update |
+<p> Response </p>
+<h3>Response status: 204 NO CONTENT</h3>
