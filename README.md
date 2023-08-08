@@ -1,8 +1,19 @@
 # Reviews-API-Service
 <h1>Reviews API Service</h1>
-The Questions and Answers API has been refractored as a microservice from the existing monolithic API for the e-commerce website, Atelier. It responds to several RESTful endpoints and has been optimized to handle web-scale traffic.
-
+<p>
+The Reviews API has been refractored as a microservice from the existing monolithic API for the e-commerce website, Atelier. It responds to several RESTful endpoints and has been optimized to handle web-scale traffic.
+</p>
+<h2>
 Optimizations:
-Implemented an ETL process to migrate over 5GB/13M+ entries into a redesigned postgreSQL database.
-Scaled horizontally to a micro-service architecture with 4 AWS EC2 instances.
-Installed an NGINX load balancer to distribute traffic across servers and utilize proxy_caching.
+</h2>
+<ul>
+  <li>
+    Implemented an ETL process to migrate over 5GB/13M+ entries into a redesigned postgreSQL database.
+  </li>
+  <li>
+    Scaled horizontally to a micro-service architecture with 5 AWS EC2 instances.
+  </li>
+  <li>
+    Installed an NGINX load balancer to distribute traffic across servers and utilize proxy_caching.
+  </li>
+</ul>
