@@ -30,15 +30,27 @@ Optimizations:
 <h2>Getting Started</h2>
 
 <p>1. Clone the Repository</p>
-  <pre><code>git clone https://github.com/sdc-ice-climbers/ice-climbers-qa-api.git</code></pre>
+  <pre><code>git clone https://github.com/TheChimeraBros/Reviews-API-Service.git</code></pre>
 
-  <h3>2. Install Dependencies</h3>
+  <p>2. Install Dependencies</p>
   <pre><code>npm install</code></pre>
 
-  <h3>3. Set Up the Database</h3>
-  <p>Follow the instructions in the README file located in the <code>server</code> folder to set up the database.</p>
+  <p>3. Follow the instructions in the README file located in the <code>server</code> folder to set up the database.</p>
 
-  <h3>4. Configure Environment Variables</h3>
+  <p>4. Configure Environment Variables</p>
   <p>Create a <code>.env</code> file based on the <code>example.env</code> file.</p>
 
-  <h3>5. Start the Server</h3>
+  <p>5. Start the Server</p>
+  
+<h2>To run the tests</h2>
+<pre><code>npm run test</code></pre>
+
+<h2>API Endpoints</h2>
+<h3>GET/reviews/</h3>
+<p>Query Parameters</p>
+<p> Parameters should be query strings.</p>
+| Parameter | Type | Description|
+| --------- | ---- | -----------|
+| page| integer | Product for which to retrieve questions.
+| count| integer | Specifies how many results per page to return. Default 5
+
