@@ -22,5 +22,6 @@ Optimizations:
 
 | Optimization  | Requests Per Sec | Avg. Response Time| Error % |
 | ------------- | ------------- | ------------|-------|
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| (1) EC2 Express Server W/PostgreSQL on AWS | 1000| 4423 ms | 34.3
+| (2) EC2 Ecpress Server W/NGINX Load Balancer  | 1000  | Fail| Fail| 100.00
+| (3) 2 EC2 Express server W/NGNIX Load Balancer | 1000 | 362ms | 13.1 
