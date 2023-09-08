@@ -10,7 +10,7 @@ Optimizations:
     Implemented an ETL process to migrate over 5GB/13M+ entries into a redesigned postgreSQL database.
   </li>
   <li>
-    Scaled horizontally to a micro-service architecture with 5 AWS EC2 instances.
+    Scaled horizontally to a micro-service architecture with 3 AWS EC2 instances.
   </li>
   <li>
     Installed an NGINX load balancer to distribute traffic across servers and utilize proxy_caching.
